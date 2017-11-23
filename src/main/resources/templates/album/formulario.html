@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Formulario album</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <form th:action="@{/album/salvar}" th:object="${album}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group">
+                    <label for="inputNome">Nome</label>
+                    <input type="text" class="form-control" id="inputNome" th:field="*{nome}"/>
+                    <span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group">
+                    <label for="inputArt">Artista</label>
+                    <select class="form-control" id="inputArt" th:field="*{artista}">
+                        <option value="">Selecione o Artista</option>
+                        <option th:each="artista : ${artistas}" th:value="${artista.id}" th:text="${artista.nome}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputGenero">Genero</label>
+                    <select class="form-control" id="inputGenero" th:field="*{genero}">
+                        <option value="">Selecione o genero</option>
+                        <option th:each="genero : ${generos}" th:value="${genero.id}" th:text="${genero.tipo}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputQtd">Quantidade de Faixas</label>
+                    <input type="text" class="form-control" id="inputQtd" th:field="*{qtd_musicas}"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputMidia">Midias</label>
+                    <select multiple="multiple" class="form-control" id="inputMidia" th:field="*{midias}">
+                        <option th:each="midia : ${midias}" th:value="${midia.id}" th:text="${midia.tipo}"></option>
+                    </select>
+                </div>
+
+
+
+                <a th:href="@{/album}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Formulario Genero</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <form th:action="@{/genero/salvar}" th:object="${genero}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group">
+                    <label for="inputTipo">Tipo</label>
+                    <input type="text" class="form-control" id="inputTipo" th:field="*{tipo}"/>
+                    <span  th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescricao">Descricao</label>
+                    <input type="text" class="form-control" id="inputDescricao" th:field="*{descricao}"/>
+                </div>
+                <a th:href="@{/genero}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

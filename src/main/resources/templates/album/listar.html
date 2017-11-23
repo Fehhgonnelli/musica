@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Listar Albuns</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-2 offset-sm-10">
+            <a th:href="@{/album/relatorio}" title="exportar par PDF" class="btn btn-success "><i class="fa fa-file-pdf-o fa-2x "></i></a>
+            <a th:href="@{/album/relatorio(format=xlsx)}" title="exportar par Excel" class="btn btn-success "><i class="fa fa-file-excel-o fa-2x "></i></a>
+</div>
+
+   <form th:action="@{/album/buscar}" method="get">
+    <input type="text" name="nome"/>
+    <button type="submit">buscar</button>
+</form>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+        
+        
+        
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Quantidade de Musicas</th>
+                <th>Genero</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="album : ${albuns}">
+                <th scope="row" th:text="${album.id}"></th>
+                <td th:text="${album.nome}"></td>
+                <td th:text="${album.qtd_musicas}"></td>
+
+
+             
+
+                <td>
+                    <div class="btn-group" role="group" aria-label="Ações">
+                        <a th:href="@{/album/editar(id=${album.id})}" class="btn btn-info btn-sm">Editar</a>
+                        <a th:href="@{/album/delete(id=${album.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+         <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${!albuns.hasPrevious()}? 'disabled'">
+                       <a class="page-link" th:href="@{/album(page=${albuns.getNumber()-1},size=${albuns.getSize()})}">Anterior</a>
+                   </li>
+                   <li class="page-item" th:classappend="${i == albuns.getNumber()}? 'active'"
+                        th:each="i : ${#numbers.sequence( 0, albuns.getTotalPages())}">
+                       <a class="page-link"
+                          th:href="@{/album(page=${i},size=${albuns.getSize()})}"
+                          th:text="${i+1}">1</a>
+                   </li>
+                   <li class="page-item" th:classappend="${!albuns.hasNext()}? 'disabled'">
+                        <a class="page-link"
+                         th:href="@{/album(page=${albuns.getNumber()+1},size=${albuns.getSize()})}">Proxima</a>
+                    </li>
+               </ul>
+            </nav>
+        
+        
+        
+        
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <a th:href="@{/album/novo}" class="btn btn-primary">Novo</a>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

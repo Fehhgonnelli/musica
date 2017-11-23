@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Listar Gravadoras</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>cnpj</th>
+                <th>Ação</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="gravadora, iter: ${gravadoras}">
+                <th scope="row" th:text="${gravadora.id}"></th>
+                <td th:text="${gravadora.nome}"></td>
+                <td th:text="${gravadora.cnpj}"></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Ações">
+                        <a th:href="@{/gravadora/editar(id=${gravadora.id})}" class="btn btn-info btn-sm">Editar</a>
+                        <a th:href="@{/gravadora/excluir(id=${gravadora.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <a th:href="@{/gravadora/novo}" class="btn btn-primary">Novo</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

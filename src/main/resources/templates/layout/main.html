@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Projeto Bandas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/star-rating.min.css}" />
+     <link rel="stylesheet" th:href="@{/css/itens.css}" />
+    <link rel="stylesheet" th:href="@{/themes/krajee-fa/theme.min.css}" />
+    
+    
+    
+    
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="/">Bandas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+        <ul class="navbar-nav mr-auto" sec:authorize="!hasRole('ROLE_ANONYMOUS')"  >
+       
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/artista') ? 'active':''}">
+                <a class="nav-link" th:href="@{/artista}">Artistas </a>
+            </li>
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/genero') ? 'active':''}">
+                <a class="nav-link" th:href="@{/genero}">Generos</a>
+            </li>
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/album') ? 'active':''}">
+                <a class="nav-link" th:href="@{/album}">Albuns</a>
+            </li>
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/gravadora') ? 'active':''}">
+                <a class="nav-link" th:href="@{/gravadora}">Gravadoras</a>
+            </li>
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/midia') ? 'active':''}">
+                <a class="nav-link" th:href="@{/midia}">Midias</a>
+            </li>
+          
+        </ul>
+          <ul class="navbar-nav mr-auto"></ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li>
+						<span style="color:red ;font-size: 15pt" sec:authentication="name"></span>
+					</li>	 
+						<li class="nav-item"  th:classappend="${#httpServletRequest.getRequestURI().startsWith('/login') ? 'active':''}">
+                		<div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+                		<a class="btn btn-success"   th:href="@{/login}">login</a>
+                		</div>
+            </li>
+            <li class="nav-item"  th:classappend="${#httpServletRequest.getRequestURI().startsWith('/') ? 'active':''}">
+            <div sec:authorize="!hasRole('ROLE_ANONYMOUS')" >
+           <form th:action="@{/logout}" method="post">
+		<input type="submit" class=" btn btn-danger" value="Sign Out" />
+	</form>
+            </div>
+            </li>
+						
+					</ul>
+
+    </div>
+</nav>
+
+
+
+<div class="container">
+    <div layout:fragment="content"></div>
+</div>
+<script th:src="@{/js/jquery-3.2.1.min.js}"  type="text/javascript"></script>
+<script th:src="@{/js/star-rating.min.js}"  type="text/javascript"></script>
+<script th:src="@{/themes/krajee-fa/theme.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/locales/pt-BR.js}"  type="text/javascript"></script>
+<script type="text/javascript">
+     $(function() {
+      $('.kv-ltr-theme-fa-star').rating({
+            hoverOnClear: false,
+            theme: 'krajee-fa',
+            step: 1,
+            language: 'pt-BR'
+        });
+    });
+</script>
+</body>
+</html>
