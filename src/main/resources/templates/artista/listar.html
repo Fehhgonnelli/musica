@@ -25,7 +25,7 @@
             <tr th:each="artista, iter: ${artistas}">
                 <th scope="row" th:text="${artista.id}"></th>
                 <td th:text="${artista.nome}"> </td>
-                <td th:text="${artista.genero}"></td>
+                <td th:text="${artista.genero.tipo}"></td>
                 <td th:text="${artista.ano_formacao}"></td>
 
                 <td>

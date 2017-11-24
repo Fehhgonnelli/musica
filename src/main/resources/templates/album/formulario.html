@@ -32,6 +32,13 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="inputGenero">gravadora</label>
+                    <select class="form-control" id="inputGenero" th:field="*{gravadora}">
+                        <option value="">Selecione o genero</option>
+                        <option th:each="gravadora : ${gravadoras}" th:value="${gravadora.id}" th:text="${gravadora.nome}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="inputQtd">Quantidade de Faixas</label>
                     <input type="text" class="form-control" id="inputQtd" th:field="*{qtd_musicas}"/>
                 </div>

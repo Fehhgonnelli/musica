@@ -22,15 +22,15 @@
     <div class="row">
         <div class="col-sm-12">
         
-        
-        
         <table class="table">
             <thead>
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Quantidade de Musicas</th>
+                <th>Artista</th>
                 <th>Genero</th>
+                <th>Midias</th>
                 <th>Ações</th>
             </tr>
             </thead>
@@ -39,9 +39,14 @@
                 <th scope="row" th:text="${album.id}"></th>
                 <td th:text="${album.nome}"></td>
                 <td th:text="${album.qtd_musicas}"></td>
-
-
-             
+                 <td th:text="${album.artista.nome}"></td>
+                <td th:text="${album.genero.tipo}"></td>
+                    <td th:text="${album.genero.tipo}"></td>
+                
+                        
+       <td>
+         <span  th:each="midia: ${album.midias}" th:text="${midia.tipo}"></span>
+       </td>
 
                 <td>
                     <div class="btn-group" role="group" aria-label="Ações">

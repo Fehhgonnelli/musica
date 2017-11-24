@@ -77,19 +77,19 @@
 				<reportElement x="280" y="0" width="66" height="20" uuid="aa9d48a4-14b0-48c3-a82d-5ca8c4df362c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b5b424b3-aa94-43da-8884-9a762de61fb3"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{genero}.getTipo()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="220" y="0" width="55" height="20" uuid="aa9d48a4-14b0-48c3-a82d-5ca8c4df362c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b5b424b3-aa94-43da-8884-9a762de61fb3"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{artista}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{artista}.getNome()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="150" y="0" width="70" height="20" uuid="aa9d48a4-14b0-48c3-a82d-5ca8c4df362c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b5b424b3-aa94-43da-8884-9a762de61fb3"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{gravadora}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{gravadora}.getNome()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

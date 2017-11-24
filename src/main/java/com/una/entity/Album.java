@@ -3,6 +3,7 @@ package com.una.entity;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -13,6 +14,7 @@ public class Album {
     private Integer id;
     @NotBlank(message = "Nome do Album obrigatório")
     private String nome;
+    @NotNull(message = "Digite um numero valido")
     private Integer qtd_musicas;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_artista", referencedColumnName = "id")
