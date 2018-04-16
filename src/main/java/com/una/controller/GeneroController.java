@@ -26,7 +26,10 @@ public class GeneroController {
     public String list(Model model){
         model.addAttribute("generos", generoRepository.findAll());
         return "genero/listar";
+        
     }
+    
+    
 
     @GetMapping("/novo")
     public String novo(Model model){
